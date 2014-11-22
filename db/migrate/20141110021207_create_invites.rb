@@ -8,8 +8,9 @@ class CreateInvites < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    execute <<SQL
+    execute <<-SQL
       ALTER TABLE invites ALTER token SET DEFAULT uuid_generate_v4();
     SQL
+
   end
 end
