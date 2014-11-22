@@ -8,7 +8,6 @@ class CreateContents < ActiveRecord::Migration
       t.string  :attachment_path
       t.integer :score
       t.boolean :closed
-      t.string  :tags, array: true
 
       t.timestamps null: false
     end

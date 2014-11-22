@@ -7,11 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string  :photo_path
       t.boolean :banned
       t.text    :profile
-      
-      t.integer :content_reputation
-      t.integer :comment_reputation
-      t.integer :reputation
-            
+      t.integer :reputation            
       t.boolean :admin
 
       t.timestamps null: false

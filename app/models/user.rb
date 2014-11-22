@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   has_secure_password
   
   def update_reputation
-    self.content_reputation = self.contents.sum(:score)
-    self.comment_reputation = self.comments.sum(:score)
-    self.reputation = self.content_reputation + self.comment_reputation
+    content_reputation = self.contents.sum(:score)
+    comment_reputation = self.comments.sum(:score)
+    self.reputation = content_reputation + comment_reputation
     self.save
   end
 
