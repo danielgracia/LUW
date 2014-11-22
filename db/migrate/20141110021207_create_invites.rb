@@ -3,7 +3,7 @@ class CreateInvites < ActiveRecord::Migration
     create_table :invites do |t|
       t.references :user
       t.boolean    :used,  default: false
-      t.column,    :token, :uuid
+      t.column     :token, :uuid
 
       t.timestamps null: false
     end
