@@ -19,7 +19,7 @@ class LoginsController < ApplicationController
       self.current_user = user
       redirect_to root_path
     else
-      redirect_to :back, status: :unauthorized, alert: ""
+      redirect_to :back, status: :unauthorized, alert: '¯\_(ツ)_/¯'
     end
   end
 
