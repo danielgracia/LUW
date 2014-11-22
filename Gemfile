@@ -29,9 +29,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Fulltext support
 gem 'pg_search'
 
-# Devise
-gem 'devise'
-
 # TinyMCE support
 gem 'tinymce-rails'
 
