@@ -38,41 +38,41 @@
         <p></p><br> Dúvida? Entre em contato: <a mailto:href="teste@teste.com"></a>emaildoprofessor@unifesp.com</a></p>
         </div>
         <div class="tab-pane fade active in" id="signin">
-            <form class="form-horizontal" id="signinForm">
+            <form class="form-horizontal" id="signinForm" role="form">
             <fieldset>
             <!-- Sign In Form -->
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="useridSign">Email:</label>
+              <label class="control-label" for="email">Email:</label>
               <div class="controls">
-                <input required id="useridSign" name="useridSign" type="text" class="form-control" placeholder="mail@mail.com" class="input-medium" required="">
+                <input required id="email" name="email" type="text" class="form-control" placeholder="mail@mail.com" class="input-medium" required="">
               </div>
             </div>
 
             <!-- Password input-->
             <div class="control-group">
-              <label class="control-label" for="passwordSign">Password:</label>
+              <label class="control-label" for="password">Password:</label>
               <div class="controls">
-                <input required id="passwordSign" name="passwordSign" class="form-control" type="password" placeholder="********" class="input-medium">
+                <input required id="password" name="password" class="form-control" type="password" placeholder="********" class="input-medium">
               </div>
             </div>
 
-            <!-- Multiple Checkboxes (inline) 
+            <!-- Multiple Checkboxes (inline)  -->
             <div class="control-group">
               <label class="control-label" for="rememberme"></label>
               <div class="controls">
-                <label class="checkbox inline" for="rememberme-0">
-                  <input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
+                <label class="checkbox inline" for="rememberme">
+                  <input type="checkbox" name="rememberme" id="rememberme" value="Remember me">
                   Remember me
                 </label>
               </div>
-            </div> -->
+            </div>
 			<div id='resultLogin'></div>
             <!-- Button -->
             <div class="control-group">
               <label class="control-label" for="signin"></label>
               <div class="controls">
-                <button id="signinBtn" name="signin" class="btn">Entrar</button>
+                <button type="submit" class="btn"> Entrar </button>
               </div>
             </div>
             </fieldset>
