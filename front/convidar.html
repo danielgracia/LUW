@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Unifesp SHARED</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+     <link href="css/offcanvas.css" rel="stylesheet">
+
+  </head>
+
+<body>
+<div class="container">
+	<!-- Button trigger modal -->
+
+<div class="container"> 
+    <hr class="prettyline">
+    <br>
+    <center>
+    <h1><b>Sobre os convites!</b></h1>
+    <h3>Por enquanto nosso sistema está voltado somente para alunos da UNIFESP!</h3>
+    <em>Então convide somente alunos da mesma...</em>
+    <br>
+    <br>
+    <br>
+  <button class="btn btn-primary btn-lg" href="#signup" data-toggle="modal" data-target=".bs-modal-sm">Convidar</button>
+   <button class="btn btn-primary btn-lg" href="../Home.html" onClick="alert('teste');">Voltar</button>
+   <br>
+   <br>
+   <a href="Home.html">Debug Voltar...</a>
+  </center>
+  <br>
+    <hr class="prettyline">
+
+  
+
+<!-- Modal -->
+<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+            <form class="form-horizontal">
+            <fieldset>
+            <!-- Sign In Form -->
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="useridSign">Email:</label>
+              <div class="controls">
+                <input required="" id="useridSign" name="useridSign" type="text" class="form-control" placeholder="mail@mail.com" class="input-medium" required="">
+              </div>
+            </div>
+			<div id='resultLogin'></div>
+            <!-- Button -->
+            <div class="control-group">
+              <label class="control-label" for="signin"></label>
+              <div class="controls">
+                <button id="conviteBtn" name="signin" class="btn">Convidar</button>
+              </div>
+            </div>
+            </fieldset>
+            </form>
+        </div>
+      <div class="modal-footer">
+      <center>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 	<footer>
+        <p>&copy; Unifesp SHARED 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript">
+	$(document).ready( function () {
+		$('#signinBtn').on('click', function (e) {
+			console.log("Entrei no login");
+			var email = $("#emailSign").val();
+			var userid = $("#useridSign").val();
+			var password = $("#passwordSign").val();
+			var container = document.getElementById('result');
+			var dataUser = JSON.parse(window.localStorage.getItem("user"));
+			if(dataUser && password == dataUser.password){
+				dataUser.logged = true;
+				window.localStorage.setItem("user", JSON.stringify(dataUser));
+				console.log("Redirecionando para home");
+				document.location = "Home.html";
+				window.location.href="Home.html";
+			}
+			else{
+				alert( 'Senha errada...');
+			}
+			
+			})
+		})
+		$('#confirmsignupBtn').on('click', function (e) {
+			
+			var email = $("#email").val();
+			var userid = $("#userid").val();
+			var password = $("#password").val();
+			var reenterpassword = $("#reenterpassword").val();
+			var container = document.getElementById('result');
+			if(password == reenterpassword){
+				var dataUser = {
+					"email": email,
+					"userid": userid,
+					"password": password,
+					"logged": false
+				}
+				window.localStorage.setItem("user", JSON.stringify(dataUser));
+				alert( 'Cadastrado com sucesso');
+			}
+			else{
+				alert( 'Senhas diferem, tente novamente');
+			}
+	})
+    </script>
+    
+  </body>
+</html>
+</body>
+</html>
