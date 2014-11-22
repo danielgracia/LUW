@@ -13,4 +13,8 @@ class UsersController < ApplicationController
   def show
   end
 
+  def you
+    @user = current_user
+  end
+
 end

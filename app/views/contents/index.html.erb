@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Unifesp SHARED</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+     <link href="css/offcanvas.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap-tagsinput.css">
+
+  </head>
+
+  <body>
+   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Unifesp SHARED</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
+        <h3 ng.model="user.nome">Bem vindo, {{user.nome}}</h3>
+        <li><a href="convidar.html">Convidar Amigo!</a></li>
+        <li><a href="#" onClick="logout();">Logout</a></li>
+      </ul>
+      <br>
+      <br>
+      <br>
+      <ul class="nav navbar-nav" ng-controller="MainCtrl as main">
+        <li><a href="Home.html">Home</a></li>
+        <li class="active"><a href="#">Navegar</a></li>
+        <li><a href="novoTopico.html">Novo Tópico</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+ 
+</nav>
+   <div class="container" style = "margin-top: 50px;" ng-app="sharedApp" ng-controller="SharedController" ng-view>
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h2>Navegação</h2>
+            <spam> Nosso sistema utiliza tags para filtrar o conteúdo, utilize o campo abaixo para adicionar tags para filtrar a pesquisa. Por padrão os resultados são ordenados cronologicamente, utilize o dropbox para mudar a lógica de ordenação.</spam>
+            
+             <div class="row">
+              <div class="col-xs-4 col-lg-4">
+                <div class="dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        Ordenar
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Melhor Rating</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Pior Rating</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Data Crescente</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Data Decrescente</a></li>
+                      </ul>
+          </div>  
+              </div><!--/.col-xs-6.col-lg-4-->
+                <div class="control-group col-xs-8 col-lg-8">
+                              <div class="controls">
+                                <input required="" id="tags" name="tags" type="text" class="form-control" value="BCC,Algoritmo" data-role="tagsinput" class="input-medium">
+                              </div>
+               </div>
+             </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-lg-12">
+              <h2>Dúvida de grafos</h2>
+              <em>Por Ciclana, em 20/10/2014
+              <span class="label label-danger pull-right"> Rating: <span class="badge">-5</span> </span>
+              </em>
+              <p>Alguem faz para mim um algoritmo que...</p>
+              <p><a class="btn btn-default" href="#" role="button">Ver Detalhes &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-12 col-lg-12">
+              <h2>Algoritmo Merge</h2>
+              <em>Por Fulano, em 14/10/2014
+              <span class="label label-success pull-right"> Rating: <span class="badge">35</span> </span>
+              </em>
+              <p>Segue um algoritmo de merge em python...</p>
+              <p><a class="btn btn-default" href="#" role="button">Ver Detalhes &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+            <div class="col-xs-12 col-lg-12">
+              <h2>Problema com Redirecionamento</h2>
+              <em>Por Fulano2, em 31/10/2014
+              <span class="label label-success pull-right"> Rating: <span class="badge">42</span> </span>
+              </em>
+              <p>Estou tendo problema com uma parte do meu código, alguem poderia me ajudar a identificar o erro nessa função?... </p>
+              <p><a class="btn btn-default" href="topic.html" role="button">Ver Detalhes &raquo;</a></p>
+            </div><!--/.col-xs-6.col-lg-4-->
+          </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#hot" role="tab" data-toggle="tab">Hot</a></li>
+              <li role="presentation"><a href="#ultimos" role="tab" data-toggle="tab">Últimos</a></li>
+            </ul>
+            
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="hot">
+                <div class="list-group" id="hot-link">
+                    <a href="#" class="list-group-item active">Hot Link</a>
+                    <a href="topic.html" class="list-group-item">Problema com Redirecionamento</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+              </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="ultimos">
+                <div class="list-group" id="ultimo-link">
+                    <a href="#" class="list-group-item active">últimos Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="topic.html" class="list-group-item">Problema com Redirecionamento</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+              </div>
+              </div>
+            </div>
+        
+    
+          
+          
+          
+          
+          
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Unifesp SHARED 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/angular1_2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/modules.js"></script>
+     <script src="js/bootstrap-tagsinput.min.js"></script>
+    <script src="js/bootstrap-tagsinput-angular.min.js"></script>
+  </body>
+</html>
