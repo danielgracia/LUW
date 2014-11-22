@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   attr_accessor :invite_token
 
   validate :must_have_valid_invite, on: :create
+
+  before_create :use_invite_token
   
   def update_reputation
     content_reputation = self.contents.sum(:score)
@@ -22,7 +24,12 @@ class User < ActiveRecord::Base
 
   protected
   def must_have_valid_invite
-    errors.add(:base, "Você não tem um convite!") unless Invite.find_by(token: self.invite_token)
+    if Invite.find_by(token: self.invite_token).try(:used?)
+      errors.add(:base, "Você não tem um convite!")
+    end
   end
-  
+
+  def use_invite_token
+    Invite.find_by(token: self.invite_token).use!
+  end
 end
