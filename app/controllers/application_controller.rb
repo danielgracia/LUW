@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if @current_user.blank?
       @current_user ||= (
         User.find_by(id: session[:user_id]) ||
-        User.find_by(id: cookie.signed[:user_id])
+        User.find_by(id: cookies.signed[:user_id])
       )
 
       set_user_cookies(@current_user)

@@ -3,31 +3,31 @@ Rails.application.routes.draw do
   root 'users#home'
 
   # Login screen
-  get '/login', to: 'login#index'
+  get '/login', to: 'logins#index'
 
-  post '/login', to: 'login#login'
-  post '/login/logout', to: 'login#logout'
-  post '/login/registrar', to: 'login#register'
+  post '/login', to: 'logins#login'
+  post '/login/logout', to: 'logins#logout'
+  post '/login/registrar', to: 'logins#register'
 
   # Content screens
-  get '/postagens', to: 'content#index'
-  get '/postagens/busca', to: 'content#search'
-  get '/postagem/nova', to: 'content#new'
-  get '/postagem/:id', to: 'content#show'
-  get '/postagem/:id/editar', to: 'content#edit'
+  get '/postagens', to: 'contents#index'
+  get '/postagens/busca', to: 'contents#search'
+  get '/postagem/nova', to: 'contents#new'
+  get '/postagem/:id', to: 'contents#show'
+  get '/postagem/:id/editar', to: 'contents#edit'
 
-  post '/postagem/criar', to: 'content#create'
-  post '/postagem/:id/salvar', to: 'content#update'
+  post '/postagem/criar', to: 'contents#create'
+  post '/postagem/:id/salvar', to: 'contents#update'
 
   ['upvote', 'downvote', 'novote'].each do |action|
-    post "/postagem/:id/#{action}", to: "content\##{action}"
+    post "/postagem/:id/#{action}", to: "contents\##{action}"
   end
 
   # Comment inside content screens
-  post '/postagem/:id/comentario/criar', to: 'content#comment'
-  post '/postagem/:id/comentario/:comment_id/deletar', to: 'content#delete_comment'
+  post '/postagem/:id/comentario/criar', to: 'contents#comment'
+  post '/postagem/:id/comentario/:comment_id/deletar', to: 'contents#delete_comment'
 
   # Invite
-  post '/convidar', to: 'invite#invite'
+  post '/convidar', to: 'invites#invite'
 
 end
