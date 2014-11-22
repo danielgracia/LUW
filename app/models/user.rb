@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   has_many :invites
   
   has_secure_password
+
+  attr_accessor :invite_token
+
+  validate :must_have_valid_invite, on: :create
   
   def update_reputation
     content_reputation = self.contents.sum(:score)
@@ -14,6 +18,11 @@ class User < ActiveRecord::Base
 
   def ban!
     self.update_columns(banned: true)
+  end
+
+  protected
+  def must_have_valid_invite
+    errors.add(:base, "Você não tem um convite!") unless Invite.find_by(token: self.invite_token)
   end
   
 end
