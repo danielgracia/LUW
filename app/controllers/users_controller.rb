@@ -1,19 +1,7 @@
 class UsersController < ApplicationController
+  before_action :require_user
 
-  def register
-    @token = params[:token]
-  end
-
-  def create
-  end
-
-  def login
-  end
-
-  def show
-  end
-
-  def you
+  def home
     @user = current_user
   end
 
