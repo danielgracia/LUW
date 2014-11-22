@@ -1,0 +1,5 @@
+Olá, <%= @email %>, você foi convidado por <%= @user.name %> para utilizar o UNIFESP Shared!
+
+Por favor, utilize o link para realizar seu cadastro:
+
+<%= register_url(token: @token) %>
