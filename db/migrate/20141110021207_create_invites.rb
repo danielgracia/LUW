@@ -8,6 +8,8 @@ class CreateInvites < ActiveRecord::Migration
       t.timestamps null: false
     end
 
+    enable_extension 'uuid-ossp'
+
     execute <<-SQL
       ALTER TABLE invites ALTER token SET DEFAULT uuid_generate_v4();
     SQL
