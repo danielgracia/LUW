@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :contents
   has_many :comments
   has_many :invites
+  has_many :votes
   
   has_secure_password
 
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
 
   validate :must_have_valid_invite, on: :create
 
-  before_create :use_invite_token
+  before_create :use_invite_token, if: ->{ self.invite_token.present? }
   
   def update_reputation
     content_reputation = self.contents.sum(:score)
@@ -32,4 +33,5 @@ class User < ActiveRecord::Base
   def use_invite_token
     Invite.find_by(token: self.invite_token).use!
   end
+
 end
