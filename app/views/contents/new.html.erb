@@ -14,27 +14,27 @@
                                     <h1>Novo Tópico</h1>
                              <!-- Text input-->
                             <div class="control-group">
-                              <label class="control-label" for="title">Título:</label>
+                              <label class="control-label" for="content[title]">Título:</label>
                               <div class="controls">
-                                <input required="" id="title" name="title" type="text" class="form-control" placeholder="Ex. Algoritmo MergeSort" class="input-medium" required="">
+                                <input required="" id="content[title]" name="content[title]" type="text" class="form-control" placeholder="Ex. Algoritmo MergeSort" class="input-medium" required="">
                               </div>
                             </div>
                              <div class="control-group">
-                              <label class="control-label" for="tags">Tags:</label>
+                              <label class="control-label" for="content[raw_tags]">Tags:</label>
                               <div class="controls">
-                                <input required="" data-role="tagsinput" id="tags" name="tags" class="form-control input-medium">
+                                <input required="" data-role="tagsinput" id="content[raw_tags]" name="content[raw_tags]" class="form-control input-medium">
                               </div>
                             </div>
                                 <p> 
-                                 <label fclass="uname"> Texto:</label>
+                                 <label fclass="uname" for="content[body]">Conteúdo:</label>
                                 <div tabindex="-1">
-                                <textarea class="tinymce" tabindex="-1" name="content" style="width:100%; height: 400px"  spellcheck="true"></textarea>
+                                <textarea class="tinymce" tabindex="-1" id-"content[body]" name="content[body]" style="width:100%; height: 400px"  spellcheck="true"></textarea>
 								<%= tinymce %>
                                 </div>
                                 </p>
                                 <p>
-                                <label for="arquivo" fclass="uname"> Arquivo:</label>
-                                <input id="arquivo" name="filearg"  type="file" placeholder="Faça Upload..." />
+                                <label for="content[file]" fclass="uname"> Arquivo:</label>
+                                <input id="content[file]" name="content[file]"  type="file" placeholder="Faça Upload..." />
                                 </p>
                                 <div class="control-group">
                                   <label class="control-label" for="create"></label>
