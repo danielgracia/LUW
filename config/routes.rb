@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/login', to: 'logins#index'
 
   post '/login', to: 'logins#login'
-  post '/login/logout', to: 'logins#logout'
-  post '/login/registrar', to: 'logins#register'
+  post '/logout', to: 'logins#logout'
+  post '/registrar', to: 'logins#register'
 
   # Content screens
   get '/postagens', to: 'contents#index'

@@ -9,7 +9,7 @@ class LoginsController < ApplicationController
       self.current_user = @user
       redirect_to root_path, notice: "Seu cadastro foi realizado com sucesso! Aproveite o UNIFESP Shared!"
     else
-      render :index, notice: "Erros durante seu cadastro!"
+      render :index, status: :unprocessable_entity, alert: "Erros durante seu cadastro!"
     end
   end
 
@@ -19,7 +19,7 @@ class LoginsController < ApplicationController
       self.current_user = user
       redirect_to root_path
     else
-      redirect_to :back, status: :unauthorized, alert: '¯\_(ツ)_/¯'
+      render :index, status: :unauthorized, alert: '¯\_(ツ)_/¯'
     end
   end
 
