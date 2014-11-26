@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   private
   def set_user_cookies(user)
     if user.present?
-      cookies.signed[:user_id] = { value: user.id, expires: 7.days }
+      cookies.signed[:user_id] = { value: user.id, expires: 7.days.from_now }
       session[:user_id] = user.id
     else
       session.delete(:user_id)
