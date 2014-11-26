@@ -21,16 +21,18 @@
       </form>
       <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
         <h3 ng.model="user.nome">Bem vindo, {{user.nome}}</h3>
-        <li><a href="convidar.html">Convidar Amigo!</a></li>
-        <li><a href="#" onClick="logout();">Logout</a></li>
+        <li><button>Convidar Amigo!</button></li>
+		<form action"/logout" method="POST">
+        	<li><button type="submit">Logout</button></li>
+		</form>
       </ul>
       <br>
       <br>
       <br>
       <ul class="nav navbar-nav" ng-controller="MainCtrl as main">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="navegar.html">Navegar</a></li>
-        <li><a href="novoTopico.html">Novo Tópico</a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/postagens">Navegar</a></li>
+        <li><a href="/postagem/criar">Novo Tópico</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
  
