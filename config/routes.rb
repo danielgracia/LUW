@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   end
 
   # Comment inside content screens
-  post '/postagem/:id/comentario/criar', to: 'contents#comment'
-  post '/postagem/:id/comentario/:comment_id/deletar', to: 'contents#delete_comment'
+  post '/postagem/:content_id/comentario/criar', to: 'contents#comment'
+  post '/postagem/:content_id/comentario/:comment_id/deletar', to: 'contents#delete_comment'
 
   # Invite
   post '/convidar', to: 'invites#invite'
