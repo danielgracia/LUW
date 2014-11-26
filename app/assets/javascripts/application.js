@@ -16,4 +16,5 @@
 //= require main
 //= require bootstrap-sprockets
 //= require bootstrap-tagsinput
+//= require tinymce-jquery
 //= require_tree .
