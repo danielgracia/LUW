@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Root should go to home
-  root 'users#home'
+  root 'contents#home'
 
   # Login screen
   get '/login', to: 'logins#index'
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/registrar', to: 'logins#register'
 
   # Content screens
-  get '/postagens', to: 'contents#index'
+  get '/postagens', to: 'contents#browse'
   get '/postagens/busca', to: 'contents#search'
   get '/postagem/nova', to: 'contents#new'
   get '/postagem/:id', to: 'contents#show'
