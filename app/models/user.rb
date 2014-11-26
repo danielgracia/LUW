@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :invite_token
 
-  validate :must_have_valid_invite, on: :create
+  validate :must_have_valid_invite, on: :create, unless: ->{ Rails.env.development? }
 
-  before_create :use_invite_token, if: ->{ self.invite_token.present? }
+  before_create :use_invite_token, unless: ->{ Rails.env.development? || self.invite_token.blank? }
   
   def update_reputation
     content_reputation = self.contents.sum(:score)
