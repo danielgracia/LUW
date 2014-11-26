@@ -26,6 +26,7 @@ class ContentsController < ApplicationController
 
   def show
     @content = Content.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -42,9 +43,30 @@ class ContentsController < ApplicationController
     end
   end
 
+  def comment
+    @content = Content.find(params[:content_id])
+    @comment = @content.comments.create(comment_params)
+    if @comment.blank?
+      render :show, alert: "Erros encontrados!"
+    else
+      render :show, notice: "Comentário postado!"
+    end
+  end
+
+  def delete_comment
+    @content = Content.find(params[:content_id])
+    @comment = Content.find(params[:comment_id])
+    @comment.destroy
+    render :show, notice: "Comentário deletado!"
+  end
+
   protected
   def content_params
-    params.require(:user).permit(:title, :body, :raw_tags)
+    params.require(:content).permit(:title, :body, :raw_tags)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 
 end
