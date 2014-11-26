@@ -22,7 +22,9 @@
       <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
         <h3 ng.model="user.nome">Bem vindo, {{user.nome}}</h3>
         <li><a href="convidar.html">Convidar Amigo!</a></li>
-        <li><a href="#" onClick="logout();">Logout</a></li>
+		<form action"/logout" method="POST">
+        	<li><button type="submit">Logout</button></li>
+		</form>
       </ul>
       <br>
       <br>
