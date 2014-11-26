@@ -6,4 +6,4 @@ Olá, <%= @email %>, você foi convidado por <%= @user.name %> para utilizar o U
 Por favor, utilize o link para realizar seu cadastro:
 <br>
 
-<%# link_to login_path(token: @token) %>
+<% link_to login_path, token: @token %>
