@@ -12,6 +12,7 @@ class ContentsController < ApplicationController
   end
 
   def new
+    @content = Content.new
   end
 
   def create
@@ -21,6 +22,11 @@ class ContentsController < ApplicationController
   end
 
   def update
+  end
+
+  protected
+  def content_params
+    params.require(:user).permit(:title, :body, :raw_tags, :attachment_ul)
   end
 
 end

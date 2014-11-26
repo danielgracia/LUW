@@ -20,11 +20,11 @@
         <button type="submit" class="btn btn-default">Enviar</button>
       </form>
       <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
-        <h3 ng.model="user.nome">Bem vindo, {{user.nome}}</h3>
+        <h3 ng.model="user.nome">Bem vindo, <%= current_user.name %></h3>
         <li><button>Convidar Amigo!</button></li>
-		<form action"/logout" method="POST">
-        	<li><button type="submit">Logout</button></li>
-		</form>
+    		<form action"/logout" method="POST">
+            	<li><button type="submit">Logout</button></li>
+    		</form>
       </ul>
       <br>
       <br>
