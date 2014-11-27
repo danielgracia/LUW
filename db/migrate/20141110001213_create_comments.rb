@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.references :content, index: true
 
       t.text    :body
-      t.integer :score
+      t.integer :score, default: 0
       t.string  :attachment_path
       
       t.timestamps null: false

@@ -6,7 +6,7 @@ class CreateContents < ActiveRecord::Migration
       t.string  :title
       t.text    :body
       t.string  :attachment_path
-      t.integer :score
+      t.integer :score, default: 0
       t.boolean :closed
 
       t.timestamps null: false
