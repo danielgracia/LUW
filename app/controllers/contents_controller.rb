@@ -47,9 +47,9 @@ class ContentsController < ApplicationController
     @content = Content.find(params[:content_id])
     @comment = @content.comments.create(comment_params.merge(user_id: current_user.id))
     if @comment.blank?
-      render :show, alert: "Erros encontrados!"
+      redirect_to show_content_path(@content), alert: "Erros encontrados!"
     else
-      render :show, notice: "Comentário postado!"
+      redirect_to show_content_path(@content), notice: "Comentário postado!"
     end
   end
 

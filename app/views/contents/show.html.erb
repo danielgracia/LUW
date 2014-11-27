@@ -27,7 +27,7 @@
 					  <br>
 					  <br>
 					  <h3 class="panel-title">Por <%= @content.user.name %>
-						<spam class="pull-right"> Em: <%= @content.created_at %> </spam>
+						<spam class="pull-right"> Em: <%= @content.created_at.strftime("%d/%m/%Y, %R") %> </spam>
 					  </h3>
 					</div>
 					<div id="content" style="word-wrap: break-word; overflow: auto">
@@ -45,7 +45,7 @@
 						  <br>
 						  <br>
 						  <h3 class="panel-title">Por <%= t.user.name %>
-							<spam class="pull-right"> Em: <%= t.created_at %> </spam>
+							<spam class="pull-right"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </spam>
 						  </h3>
 						</div>
 						<div id="content" style="word-wrap: break-word; overflow: auto">

@@ -12,14 +12,14 @@
 		<div role="tabpanel" class="tab-pane active" id="hot">
 			<div class="list-group" id="hot-link">
 				<% Content.order(score: :desc).limit(10).each do |c| %>
-					<%= link_to show_content_path(c), class: "list-group-item" %>
+					<%= link_to c.title, show_content_path(c), class: "list-group-item" %>
 				<% end %>
 			</div>
 		</div>
 		<div role="tabpanel" class="tab-pane" id="ultimos">
 			<div class="list-group" id="ultimo-link">
 				<% Content.order(created_at: :desc).limit(10).each do |c| %>
-					<%= link_to show_content_path(c), class: "list-group-item" %>
+					<%= link_to c.title, show_content_path(c), class: "list-group-item" %>
 				<% end %>
 			</div>
 		</div>
