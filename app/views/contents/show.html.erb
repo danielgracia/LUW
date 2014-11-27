@@ -7,7 +7,7 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div id="topicContent">
-			  <h1><% @content.title %></h1>
+			  <h1><%= @content.title %></h1>
 			  <hr class="prettyline">
 			  <div id="tags">
 				<p>Tags:
@@ -21,35 +21,32 @@
           	  <hr class="prettyline">
 			  <div class="panel panel-primary">
 					<div class="panel-heading">
-					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail" alt="Perfil Photo" width="100px" height="100px">
+					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left" alt="Perfil Photo" width="100px" height="100px">
+					  <h3 class="panel-title">Por <%= @content.user.name %></h3>
 					  <button type="button" class="btn btn-sm btn-danger pull-right"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
-					  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button>
-					  <br>
-					  <br>
-					  <h3 class="panel-title">Por <%= @content.user.name %>
-						<spam class="pull-right"> Em: <%= @content.created_at %> </spam>
-					  </h3>
+					  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button> 
 					</div>
-					<div id="content" style="word-wrap: break-word; overflow: auto">
+					<div class="panel-body">
 					<%= raw @content.body %>
 					</div>
+					<div class="panel-footer"><spam class="pull-right"> Em: <%= @content.created_at %> </spam></div>
 			  </div>
 			  
 			  <% @content.comments.each do |t| %>
 			  	<hr class="prettyline">
-				  <div class="panel panel-primary">
-						<div class="panel-heading">
-						  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail" alt="Perfil Photo" width="100px" height="100px">
+				  <div class="panel panel-default">
+						<div class="panel-heading comment-heading">
+						  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left comment-img" alt="Perfil Photo" width="70px" height="70px">
+						  <h3 class="panel-title">Por <%= t.user.name %></h3>
+						  <span class="label label-deffault pull-right"><span class="badge"><%= @comment.score %></span> </span>
 						  <button type="button" class="btn btn-sm btn-danger pull-right"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
 						  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button>
-						  <br>
-						  <br>
-						  <h3 class="panel-title">Por <%= t.user.name %>
-							<spam class="pull-right"> Em: <%= t.created_at %> </spam>
-						  </h3>
 						</div>
-						<div id="content" style="word-wrap: break-word; overflow: auto">
+						<div class="panel-body">
 						<%= raw t.body %>
+						</div>
+						<div class="panel-footer">
+							<spam class="pull-right"> Em: <%= t.created_at %> </spam>
 						</div>
 				  </div>
 			  <% end %>
