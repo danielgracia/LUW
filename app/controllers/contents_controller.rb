@@ -45,7 +45,7 @@ class ContentsController < ApplicationController
 
   def comment
     @content = Content.find(params[:content_id])
-    @comment = @content.comments.create(comment_params)
+    @comment = @content.comments.create(comment_params.merge(user_id: current_user.id))
     if @comment.blank?
       render :show, alert: "Erros encontrados!"
     else
