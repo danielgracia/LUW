@@ -39,7 +39,7 @@
 				<div class="col-xs-12 col-lg-12">
 					<h2><%= link_to c.title, show_content_path(c)%></h2>
 					<em>Por <%= c.user.name %>, em <%= c.created_at %>
-					<span class="label label-danger pull-right"> Rating: <span class="badge"><%= c.rating %></span> </span>
+					<span class="label label-danger pull-right"> Rating: <span class="badge"><%= c.score %></span> </span>
 					</em>
 					<p><%= c.preview %></p>
              		<p><a class="btn btn-default" href="<=% show_content_path(c) %>" role="button">Ver Detalhes &raquo;</a></p>
