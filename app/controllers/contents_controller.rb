@@ -18,7 +18,7 @@ class ContentsController < ApplicationController
   def create
     @content = current_user.contents.create(content_params)
     if @content.errors.blank?
-      render :show
+      redirect_to show_content_path(@content)
     else
       render :new, alert: "Erros encontrados!"
     end
@@ -37,9 +37,9 @@ class ContentsController < ApplicationController
     if @content.blank?
       redirect_to :root, alert: "RÁQUIO!"
     elsif @content.errors.blank?
-      render :show, notice: "Postagem atualizada com sucesso!"
+      redirect_to show_content_path(@content), notice: "Postagem atualizada com sucesso!"
     else
-      render :edit, alert: "Erros encontrados!"
+      redirect_to edit_content_path(@content), alert: "Erros encontrados!"
     end
   end
 
