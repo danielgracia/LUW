@@ -1,5 +1,8 @@
 class Content < ActiveRecord::Base
   include Votable
+  include ActionView::Helpers::SanitizeHelper
+
+  MAX_CHARS_ON_PREVIEW
 
   attr_accessor :raw_tags
 
@@ -19,4 +22,7 @@ class Content < ActiveRecord::Base
     end
   end
 
+  def preview
+    self.strip_tags(self.body)[0,200]
+  end
 end
