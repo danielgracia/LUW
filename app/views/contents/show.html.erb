@@ -21,7 +21,7 @@
           	  <hr class="prettyline">
 			  <div class="panel panel-primary">
 					<div class="panel-heading">
-					  <img src="img/user_icon.jpg" class="img-thumbnail" alt="Perfil Photo" width="100px" height="100px">
+					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail" alt="Perfil Photo" width="100px" height="100px">
 					  <button type="button" class="btn btn-sm btn-danger pull-right"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
 					  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button>
 					  <br>
@@ -36,17 +36,35 @@
 			  </div>
 			  
 			  <% @content.comments.each do |t| %>
+			  	<hr class="prettyline">
+				  <div class="panel panel-primary">
+						<div class="panel-heading">
+						  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail" alt="Perfil Photo" width="100px" height="100px">
+						  <button type="button" class="btn btn-sm btn-danger pull-right"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
+						  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button>
+						  <br>
+						  <br>
+						  <h3 class="panel-title">Por <%= t.user.name %>
+							<spam class="pull-right"> Em: <%= t.created_at %> </spam>
+						  </h3>
+						</div>
+						<div id="content" style="word-wrap: break-word; overflow: auto">
+						<%= raw t.body %>
+						</div>
+				  </div>
+			  <% end %>
           
           </div>
           <div class="jumbotron">
             <div id="wrapper" style="width: 700px">
                             
-                                <form  enctype="multipart/form-data" method="post" action="/postagem/<% @content.id %>/comentario/criar" autocomplete="on" class="form-horizontal">
+                                <form  enctype="multipart/form-data" method="post" action="/postagem/<%= @content.id %>/comentario/criar" autocomplete="on" class="form-horizontal">
                                     <h2>Comentar</h2>
                              <!-- Text input-->
                                 <p> 
                                 <div tabindex="-1">
-                                <textarea class="textbox" tabindex="-1" name="content[body]" style="width:100%; height: 200px"  spellcheck="true"></textarea>
+                                <textarea class="tinymce" tabindex="-1" name="comment[body]" style="width:100%; height: 200px"  spellcheck="true"></textarea>
+								<%= tinymce %>
                                 </div>
                                 </p>
                                 <div class="control-group">
