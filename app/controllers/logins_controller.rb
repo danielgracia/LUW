@@ -24,7 +24,7 @@ class LoginsController < ApplicationController
   end
 
   def logout
-    self.current_user(nil)
+    self.current_user = nil
     redirect_to :login_path, notice: "Você foi deslogado!"
   end
 
