@@ -19,7 +19,7 @@ class ContentsController < ApplicationController
       collection: search_contents
   
     render json: {
-      next_page: contents.last_page? ? nil : contents.current_page + 1
+      next_page: contents.last_page? ? nil : contents.current_page + 1,
       result: contents
     }
   end
