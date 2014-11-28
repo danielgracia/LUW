@@ -15,9 +15,7 @@ class ContentsController < ApplicationController
   end
 
   def search
-    contents = Content.by_tags(*params[:tags].split(','))
-      .search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by]])
-      .paginate(params[:per_page])
+    contents = search_contents
   
     render json: {
       next_page: contents.last_page? ? nil : contents.current_page + 1
@@ -94,9 +92,16 @@ class ContentsController < ApplicationController
   end
 
   def search_contents
-    Content.by_tags(*params[:tags].split(','))
-      .search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by]])
-      .page(@current_page).per(@per_page)
+    result = Content.all
+    result = result.by_tags(*params[:tags].split(',')]) if params[:tags]
+
+    if params[:search]
+      result = result.search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by].to_i])
+    else
+      result = result.where(user: current_user).order(created_at: :desc)
+    end
+
+    result.page.page(@current_page).per(@per_page)
   end
 
 end
