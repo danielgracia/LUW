@@ -33,6 +33,9 @@ gem 'tinymce-rails'
 # Timezone info
 gem 'tzinfo-data'
 
+# Pagination support
+gem 'kaminari'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

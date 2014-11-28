@@ -1,14 +1,28 @@
 class ContentsController < ApplicationController
   before_action :require_user
+  before_action :set_pagination, only: :search
+  before_action :reset_pagination, only: :browse
 
   def home
     @user = current_user
   end
 
+  SEARCH_RANKING = [:best, :best, :worst, :newest, :oldest]
+
   def browse
+    @query = params[:query]
+    @contents = search_contents
   end
 
   def search
+    contents = Content.by_tags(*params[:tags].split(','))
+      .search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by]])
+      .paginate(params[:per_page])
+  
+    render json: {
+      next_page: contents.last_page? ? nil : contents.current_page + 1
+      result: contents
+    }
   end
 
   def new
@@ -67,6 +81,22 @@ class ContentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body)
+  end
+
+  def set_pagination
+    @current_page = params[:page] || 1
+    @per_page = params[:per_page] || 10
+  end
+
+  def reset_pagination
+    @current_page = 1
+    @per_page = 10
+  end
+
+  def search_contents
+    Content.by_tags(*params[:tags].split(','))
+      .search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by]])
+      .page(@current_page).per(@per_page)
   end
 
 end
