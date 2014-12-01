@@ -1,7 +1,7 @@
 function changeOrder(sufix){
 	
 	console.log("sufix gerada = " + sufix);
-	var keyword= $("#search").val(); 
+	var keyword= $("#search-keyword").val(); 
 	var dataE = { "keyword": keyword };
 	$.ajax( {
 		type: "POST",
@@ -35,4 +35,23 @@ function setLocation(){
 	}
 
 
+}
+
+function searchShortcut(){
+	var keyword= $("#search-shortcut").val();
+	console.log("Current location:", window.location.href);
+	$.ajax( {
+		type: "GET",
+		url: "/postagens",
+		dataType: 'html',
+		async: false,
+		success: function(data){
+			console.log("Success: ");
+			document.body.innerHTML = data;
+			$("#search-keyword").val(keyword);
+		},
+		error: function (e) {
+		}
+	});  
+	return false;
 }
