@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require main
 //= require bootstrap-sprockets
+//require bootstrap3-typeahead
+//= require typeahead.bundle
 //= require bootstrap-tagsinput
 //= require tinymce-jquery
+//= require main
 //= require_tree .

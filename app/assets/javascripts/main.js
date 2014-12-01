@@ -1,3 +1,4 @@
+
 function changeOrder(sufix){
 	
 	console.log("sufix gerada = " + sufix);
@@ -26,6 +27,7 @@ function setLocation(){
 			break;
 		case "/postagens":
 			$("#NavegarLink").addClass('active');
+			
 			break;
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
