@@ -29,7 +29,15 @@
 					<div class="panel-body">
 					<%= raw @content.body %>
 					</div>
-					<div class="panel-footer"><spam class="pull-right"> Em: <%= @content.created_at.strftime("%d/%m/%Y, %R") %> </spam></div>
+					<div class="panel-footer auto-overflow">
+						<% if @current_user.name == @content.user.name %>
+								<button type="button" class="btn btn-sm btn-primary"><spam class="glyphicon glyphicon-pencil"> Editar </spam></button>
+								<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+						<% end %>
+						<spam class="date-label float-right"> 
+							Em: <%= @content.created_at.strftime("%d/%m/%Y, %R") %>
+						</spam>
+					</div>
 			  </div>
 			  
 			  <% @content.comments.each do |t| %>
@@ -45,8 +53,11 @@
 						<div class="panel-body">
 						<%= raw t.body %>
 						</div>
-						<div class="panel-footer">
-							<spam class="pull-right"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </spam>
+						<div class="panel-footer auto-overflow">
+							<spam class="float-right date-label"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </spam>
+							<% if @current_user.name == t.user.name %>
+								<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+							<% end %>
 						</div>
 				  </div>
 			  <% end %>

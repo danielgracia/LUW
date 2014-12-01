@@ -4,7 +4,7 @@
  * --------------------------------------------------
  */
 .panel-footer{
-	padding-bottom: 30px !important;
+	padding-bottom: 15px !important;
 }
 
 .panel-heading{
@@ -52,3 +52,20 @@
     color: white;
 }
 
+.date-label{
+	padding: 5px !important;
+	border: 2px !important;
+}
+
+.float-right{
+	float: right; 
+}
+
+.auto-overflow{
+	overflow: auto;
+}
+
+.margin5{
+	margin-right: 5px;
+	margin-left: 5px;
+}
