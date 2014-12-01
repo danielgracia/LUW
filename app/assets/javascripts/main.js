@@ -32,6 +32,9 @@ function setLocation(){
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
 			break;
+		case "/sobre":
+			$("#SobreLink").addClass('active');
+			break;
 		default:
 			break;
 	}
