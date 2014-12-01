@@ -16,3 +16,23 @@ function changeOrder(sufix){
 		}
 	});  
 }
+
+function setLocation(){
+	var pathname = window.location.pathname;
+	console.log("Local: " + pathname);
+	switch(pathname){
+		case "/":
+			$("#HomeLink").addClass('active');
+			break;
+		case "/postagens":
+			$("#NavegarLink").addClass('active');
+			break;
+		case "/postagem/nova":
+			$("#NovoLink").addClass('active');
+			break;
+		default:
+			break;
+	}
+
+
+}

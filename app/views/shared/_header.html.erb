@@ -1,39 +1,91 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Unifesp SHARED</a>
-    </div>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" >
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Enviar</button>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/">Unifesp SHARED</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <form class="navbar-form navbar-left" role="search">
+      <div class="input-group">
+        <input type="text" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Procurar</button>
+        </span>
+      </div><!-- /input-group -->
+    </form>
+    <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
+      <h3>Bem vindo, <%= current_user.name %></h3>
+
+      <li><button class="btn btn-default" href="#invite" data-toggle="modal" data-target=".bs-modal-sm">Convidar</button></li>
+      <form action="/logout" method="POST">
+        <li><button type="submit" class="btn btn-default pull-right">Logout</button></li>
       </form>
-      <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
-        <h3>Bem vindo, <%= current_user.name %></h3>
-        <li><button>Convidar Amigo!</button></li>
-    		<form action="/logout" method="POST">
-            	<li><button type="submit">Logout</button></li>
-    		</form>
-      </ul>
-      <br>
-      <br>
-      <br>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/postagens">Navegar</a></li>
-        <li><a href="/postagem/nova">Novo Tópico</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
- 
+
+    </ul>
+    <br>
+    <br>
+    <br>
+    <ul class="nav navbar-nav">
+      <li id="HomeLink" class="navLink"><a href="/">Home</a></li>
+      <li id="NavegarLink" class="navLink"><a href="/postagens">Navegar</a></li>
+      <li id="NovoLink" class="navLink"><a href="/postagem/nova">Novo Tópico</a></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+
 </nav>
+
+<div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <br>
+                    <div class="bs-example bs-example-tabs">
+                      <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#invite" data-toggle="tab">Convidar</a></li>
+                      </ul>
+                    </div>
+                    <div class="modal-body">
+                      <div id="myTabContent" class="tab-content">
+
+                          <div class="tab-pane fade active in" id="invite">
+                            <form class="form-horizontal" id="signinForm" role="form" action"/login" method="POST">
+                              <fieldset>
+                                <!-- Sign In Form -->
+                                <!-- Text input-->
+                                <div class="control-group">
+                                  <label class="control-label" for="email">Email:</label>
+                                  <div class="controls">
+                                    <input required id="email" name="email" type="text" class="form-control" placeholder="mail@mail.com" class="input-medium" required="">
+                                  </div>
+                                </div>
+
+
+                                <div id='result'></div>
+                                <!-- Button -->
+                                <div class="control-group">
+                                  <label class="control-label" for="invite"></label>
+                                  <div class="controls">
+                                    <button type="submit" class="btn"> Mandar Convite </button>
+                                  </div>
+                                </div>
+                              </fieldset>
+                            </form>
+                          </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                      </center>
+                    </div>
+    </div>
+  </div>
+</div>
