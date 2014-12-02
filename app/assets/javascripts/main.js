@@ -84,9 +84,15 @@ function setLocation(){
 
 }
 
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+}
 
 function searchShortcut(){
 	var keyword= $("#search-shortcut").val();
+
 	console.log("Current location:", window.location.href);
 	$.ajax( {
 		type: "GET",
@@ -102,12 +108,17 @@ function searchShortcut(){
 			window.shortcut = true;
 			console.log("changing shortcut to " + window.shortcut)
 			search_feed = data;
-			$(location).attr('href', '/postagens');
+			$(location).attr('href', '/postagens' + "?search=" + keyword);
 			
 		},
 		error: function (e) {
 		}
 	});  
+	
+}
+
+function redirectSearch(){
+	window.location.href = "/postagens" + "?search=" + $("#search-shortcut").val();
 	return false;
 }
 
