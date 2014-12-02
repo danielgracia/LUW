@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   root 'contents#home'
 
   # Login screen
-  get '/login', to: 'logins#index'
+  get '/login', to: 'logins#index', as: :login_index
 
-  post '/login', to: 'logins#login'
-  post '/logout', to: 'logins#logout'
-  post '/registrar', to: 'logins#register'
+  post '/login', to: 'logins#login', as: :login
+  post '/logout', to: 'logins#logout', as: :logout
+  post '/registrar', to: 'logins#register', as: :register
 
   # Content screens
   get '/postagens', to: 'contents#browse'

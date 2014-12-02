@@ -3,6 +3,7 @@ class InviteMailer < ActionMailer::Base
 
   def send_invite(user, email)
     invite = user.invites.create!
+    invite.reload
 
     @user = user
     @email = email
