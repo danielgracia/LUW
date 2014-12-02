@@ -173,3 +173,20 @@ function logout(){
 	}); 
 	return false; 
 }
+
+function editPost(){
+	var container = $("#content");
+	$("#edit-area").toggle();
+	var backup = container.html();
+	//ajaxLoad(backup);
+
+}
+
+function ajaxLoad(text) {
+        var ed = tinyMCE.get('edit');
+        ed.setProgressState(1); // Show progress
+        window.setTimeout(function() {
+            ed.setProgressState(0); // Hide progress
+            ed.setContent(text);
+        }, 1);
+ }

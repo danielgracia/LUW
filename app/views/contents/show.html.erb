@@ -26,12 +26,16 @@
 						<button type="button" class="btn btn-sm btn-danger pull-right" onclick="vote('downvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
 						<button type="button" class="btn btn-sm btn-success pull-right" onclick="vote('upvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button> 
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="content">
 						<%= raw @content.body %>
+						<div id="edit-area" class="invisible">
+							<textarea class="tinymce" tabindex="-1" name="edit" style="width:100%; height: 300px" spellcheck="true" value="<%= raw @content.body %>"></textarea>
+							<%= tinymce %>
+						</div>
 					</div>
 					<div class="panel-footer auto-overflow">
 						<% if @current_user.name == @content.user.name %>
-						<button type="button" class="btn btn-sm btn-primary"><spam class="glyphicon glyphicon-pencil"> Editar </spam></button>
+						<button type="button" class="btn btn-sm btn-primary" onclick="editPost();"><spam class="glyphicon glyphicon-pencil"> Editar </spam></button>
 						<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
 						<% end %>
 						<spam class="date-label float-right"> 
