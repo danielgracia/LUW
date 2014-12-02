@@ -7,8 +7,6 @@ class ContentsController < ApplicationController
     @user = current_user
   end
 
-  SEARCH_RANKING = [:best, :best, :worst, :newest, :oldest]
-
   def browse
     @query = params[:query]
     @contents = search_contents
@@ -109,16 +107,23 @@ class ContentsController < ApplicationController
   end
 
   def search_contents
-    result = Content.all
-    result = result.by_tags(*params[:tags].split(',')) if params[:tags].present?
-
-    if params[:search]
-      result = result.search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by].to_i])
+    if params[:search].present?
+      if params[:tags].present?
+        by_tags = Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id")
+        Content.where(id: by_tags)
+          .search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
+      else
+        Content.search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
+      end
     else
-      result = result.where(user: current_user).order(created_at: :desc)
-    end
-
-    result.page(@current_page).per(@per_page)
+      start = if params[:tags].present?
+        Content.where(id: Content.by_tags(*params[:tags].split(','))
+          .select("DISTINCT tags.id"))
+      else
+        Content.all
+      end
+      start.where(user: current_user).order(created_at: :desc)
+    end.page(@current_page).per(@per_page)
   end
 
 end
