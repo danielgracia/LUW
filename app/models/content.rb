@@ -38,6 +38,7 @@ class Content < ActiveRecord::Base
       ignoring: :accents,
       using: {
         tsearch: {
+          prefix: true,
           dictionary: 'portuguese',
           tsvector_column: 'fulltext'
         }
