@@ -32,7 +32,7 @@ class Content < ActiveRecord::Base
     else
       {}
     end.merge({
-      against: [:title, :body]
+      against: [:title, :body],
       query: query,
       ignoring: :accents,
       using: {
