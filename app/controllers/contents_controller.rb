@@ -42,6 +42,21 @@ class ContentsController < ApplicationController
     @comment = Comment.new
   end
 
+  def upvote
+    Content.find(params[:id]).upvote!
+    head :ok
+  end
+
+  def downvote
+    Content.find(params[:id]).downvote!
+    head :ok
+  end
+
+  def novote
+    Content.find(params[:id]).novote!
+    head :ok
+  end
+
   def edit
   end
 
