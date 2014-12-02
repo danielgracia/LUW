@@ -32,6 +32,7 @@ class Content < ActiveRecord::Base
     else
       {}
     end.merge({
+      against: [:title, :body]
       query: query,
       ignoring: :accents,
       using: {
@@ -48,7 +49,13 @@ class Content < ActiveRecord::Base
     include(:tags).where(tags: { id: Tag.search(*tags).ids })
   }
 
+  before_create :default_upvote
   before_save :process_tags
+
+  def default_upvote
+    self.upvote_by(self.user)
+    self.update_score
+  end
 
   def process_tags
     if self.raw_tags.present?

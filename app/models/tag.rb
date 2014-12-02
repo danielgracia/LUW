@@ -6,6 +6,7 @@ class Tag < ActiveRecord::Base
   scope :search, ->(*tags) { where(body: tags) }
 
   pg_search_scope :autocomplete, ignoring: :accents,
+    against: [:body],
     using: {
       tsearch: {
         prefix: true,
