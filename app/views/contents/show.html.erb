@@ -23,8 +23,8 @@
 					<div class="panel-heading">
 					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left" alt="Perfil Photo" width="100px" height="100px">
 					  <h3 class="panel-title">Por <%= @content.user.name %></h3>
-					  <button type="button" class="btn btn-sm btn-danger pull-right" onclick="vote('upvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
-					  <button type="button" class="btn btn-sm btn-success pull-right" onclick="vote('downvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button> 
+					  <button type="button" class="btn btn-sm btn-danger pull-right" onclick="vote('downvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
+					  <button type="button" class="btn btn-sm btn-success pull-right" onclick="vote('upvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button> 
 					</div>
 					<div class="panel-body">
 					<%= raw @content.body %>
