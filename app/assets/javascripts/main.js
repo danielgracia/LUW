@@ -4,7 +4,7 @@ function changeOrder(suffix){
 	console.log("suffix gerada = " + suffix);
 	$.ajax({
 		type: "POST",
-		url: "/postagem/busca/",
+		url: "/postagens/busca/",
 		data: { 
 			search: $("#search-keyword").val(),
 			tags: $("#tags").val(), //TODO
@@ -13,7 +13,7 @@ function changeOrder(suffix){
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(data){
-			
+			console.log(JSON.parse(data));
 		},
 		error: function (e) {
 		
