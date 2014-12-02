@@ -117,3 +117,17 @@ function vote(action, id){
 	});  
 
 }
+
+function logout(){
+	$.ajax( {
+		type: "POST",
+		url: "/logout",
+		success: function(data){
+			console.log("DESLOGADO: " + data);
+			$(location).attr('href', '/login');
+		},
+		error: function (e) {
+		}
+	}); 
+	return false; 
+}
