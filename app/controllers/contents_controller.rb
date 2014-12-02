@@ -110,7 +110,7 @@ class ContentsController < ApplicationController
 
   def search_contents
     result = Content.all
-    result = result.by_tags(*params[:tags].split(',')) if params[:tags]
+    result = result.by_tags(*params[:tags].split(',')) if params[:tags].present?
 
     if params[:search]
       result = result.search(params[:search], rank_by: SEARCH_RANKING[params[:rank_by].to_i])
