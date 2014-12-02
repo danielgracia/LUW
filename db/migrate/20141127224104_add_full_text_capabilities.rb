@@ -21,10 +21,18 @@ class AddFullTextCapabilities < ActiveRecord::Migration
 
     execute <<-SQL
       DROP TRIGGER IF EXISTS tsvectorupdate ON tags;
+      DROP FUNCTION IF EXISTS tags_update_trigger();
+
+      CREATE FUNCTION tags_update_trigger() RETURNS trigger AS $$
+      BEGIN
+        new.fulltext := to_tsvector('pg_catalog.portuguese', text(new.body));
+        return new;
+      END
+      $$ LANGUAGE plpgsql;
 
       CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE
       ON tags FOR EACH ROW EXECUTE PROCEDURE
-      tsvector_update_trigger(fulltext, 'pg_catalog.portuguese', body);
+      tags_update_trigger();
     SQL
 
     remove_index :tags, :body

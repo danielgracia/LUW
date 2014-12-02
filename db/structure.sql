@@ -67,6 +67,20 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: tags_update_trigger(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION tags_update_trigger() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        new.fulltext := to_tsvector('pg_catalog.portuguese', text(new.body));
+        return new;
+      END
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -447,7 +461,7 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON contents FOR EACH ROW E
 -- Name: tsvectorupdate; Type: TRIGGER; Schema: public; Owner: -
 --
 
-CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON tags FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger('fulltext', 'pg_catalog.portuguese', 'body');
+CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON tags FOR EACH ROW EXECUTE PROCEDURE tags_update_trigger();
 
 
 --

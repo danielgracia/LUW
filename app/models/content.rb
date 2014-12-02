@@ -63,4 +63,5 @@ class Content < ActiveRecord::Base
   def preview
     self.strip_tags(self.body)[0,MAX_CHARS_ON_PREVIEW]
   end
+
 end

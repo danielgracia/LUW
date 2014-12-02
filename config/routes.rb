@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   # Invite
   post '/convidar', to: 'invites#invite'
 
+  # About
+  get '/sobre', to: 'about#about'
+
 end
