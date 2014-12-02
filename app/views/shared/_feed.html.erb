@@ -1,10 +1,15 @@
-<div class="col-xs-9 col-lg-9">
+<div class="col-xs-9 col-lg-9 auto-overflow">
  	<h2><%= link_to feed.title, show_content_path(feed)%></h2>
  	<em>Por <%= feed.user.name %>, em <%= feed.created_at %>
  		<span class="label label-danger pull-right"> Rating: <span class="badge"><%= feed.score %></span> </span>
  	</em>
  	<p><%= feed.preview %></p>
 
- 	<p><a class="btn btn-default" href='<%= show_content_path(feed) %>' role="button">Ver Detalhes &raquo;</a></p>
+ 	<p>
+ 		Tags:<% @content.tags.each.limit(10) do |t|   %>
+ 		<span class="label label-info"> <%= t.body %></span>
+		<% end %>
+ 		<a class="btn btn-default pull-right" href='<%= show_content_path(feed) %>' role="button">Ver Detalhes &raquo;</a>
+ 	</p>
 
 </div><!--/.col-xs-6.col-lg-4-->
