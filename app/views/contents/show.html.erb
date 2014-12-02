@@ -60,7 +60,9 @@
 					<div class="panel-footer auto-overflow">
 						<spam class="float-right date-label"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </spam>
 						<% if @current_user.name == t.user.name %>
-						<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+						<form action="/postagem/<%= @content.id %>/comentario/<%= t.id %>/deletar" method="POST">
+							<button type="submit" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+						</form>
 						<% end %>
 					</div>
 				</div>

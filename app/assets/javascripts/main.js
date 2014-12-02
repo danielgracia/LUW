@@ -6,7 +6,7 @@ function changeOrder(suffix){
 	console.log("suffix gerada = " + suffix);
 	$.ajax({
 		type: "GET",
-		url: "/postagens/busca/",
+		url: "/postagens/busca",
 		data: { 
 			search: $("#search-keyword").val(),
 			tags: $("#tags").val(), //TODO
@@ -27,7 +27,8 @@ function changeOrder(suffix){
 		error: function (e) {
 		
 		}
-	});  
+	});
+	return false;
 }
 
 function setLocation(){
@@ -88,33 +89,6 @@ function getURLParameter(name) {
     return decodeURI(
         (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
     );
-}
-
-function searchShortcut(){
-	var keyword= $("#search-shortcut").val();
-
-	console.log("Current location:", window.location.href);
-	$.ajax( {
-		type: "GET",
-		url: "/postagens/busca",
-		data: { 
-			search: $("#search-shortcut").val(),
-			tags: "",
-			rank_by: "best",
-		},
-		dataType: "json",
-		success: function(data){
-			console.log("Success: " + data);
-			window.shortcut = true;
-			console.log("changing shortcut to " + window.shortcut)
-			search_feed = data;
-			$(location).attr('href', '/postagens' + "?search=" + keyword);
-			
-		},
-		error: function (e) {
-		}
-	});  
-	
 }
 
 function redirectSearch(){
