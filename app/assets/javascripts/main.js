@@ -1,7 +1,6 @@
 
 function changeOrder(suffix){
 
-	
 	console.log("suffix gerada = " + suffix);
 	$.ajax({
 		type: "POST",
