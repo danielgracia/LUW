@@ -46,7 +46,7 @@ class Content < ActiveRecord::Base
 
   scope :by_tags, ->(*tags){
     return where('') if tags.blank?
-    include(:tags).where(tags: { id: Tag.search(*tags).ids })
+    includes(:tags).where(tags: { id: Tag.search(*tags).ids })
   }
 
   before_create :default_upvote

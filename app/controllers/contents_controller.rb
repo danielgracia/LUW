@@ -15,12 +15,13 @@ class ContentsController < ApplicationController
   end
 
   def search
-    contents = render_to_string partial: "shared/feed",
-      collection: search_contents
+    contents = search_contents
+    rendered_data = render_to_string partial: "shared/feed",
+      collection: contents
   
     render json: {
       next_page: contents.last_page? ? nil : contents.current_page + 1,
-      result: contents
+      result: rendered_data.strip
     }
   end
 

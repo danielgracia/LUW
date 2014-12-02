@@ -1,19 +1,17 @@
 
 function changeOrder(suffix){
-
 	console.log("suffix gerada = " + suffix);
 	$.ajax({
-		type: "POST",
+		type: "GET",
 		url: "/postagens/busca/",
 		data: { 
 			search: $("#search-keyword").val(),
 			tags: $("#tags").val(), //TODO
 			rank_by: suffix,
 		},
-		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(data){
-			console.log(JSON.parse(data));
+			console.log(data);
 		},
 		error: function (e) {
 		
