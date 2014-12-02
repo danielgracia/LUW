@@ -1,3 +1,6 @@
+var shortcut;
+var keyword;
+var search_feed;
 
 function changeOrder(suffix){
 	console.log("suffix gerada = " + suffix);
@@ -12,6 +15,14 @@ function changeOrder(suffix){
 		dataType: "json",
 		success: function(data){
 			console.log(data);
+			if (data.result == ""){
+				console.log("RESULTADO VAZIO");
+				$("#feed-list").html("<div id='result' role='alert' class='alert alert-warning'>Nenhum resultado obtido na pesquisa!</div>");
+			}
+			else{
+				console.log("ACHOU ALGO...");
+				$("#feed-list").html(data.result);
+			}
 		},
 		error: function (e) {
 		
@@ -27,6 +38,7 @@ function setLocation(){
 			$("#HomeLink").addClass('active');
 			break;
 		case "/postagens":
+			console.log("SEARCH PAGE SHORTCUT? = " + window.shortcut);
 			$("#NavegarLink").addClass('active');
 			$('#tags').tagsinput({
 				elemControlSize: true,
@@ -36,9 +48,31 @@ function setLocation(){
 					source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
 				}
 			});
+			$('#tags').on('itemAdded', function(event) {
+  				changeOrder('best');
+			});
+			if(window.shortcut){
+				$("#search-keyword").val(keyword);
+				console.log("search feed = " + search_feed);
+				window.shortcut = false;
+			}
 			break;
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
+			$("#tags").tagsinput({
+            elemControlSize: true,
+            typeahead :
+            {
+              items: 4,
+              source: function(query, cb){
+                $.get('/sugestoes', {
+                  query: query
+                }, function(result){
+                  qb(result);
+                });
+              }
+            }
+                                  });
 			break;
 		case "/sobre":
 			$("#SobreLink").addClass('active');
@@ -50,18 +84,26 @@ function setLocation(){
 
 }
 
+
 function searchShortcut(){
 	var keyword= $("#search-shortcut").val();
 	console.log("Current location:", window.location.href);
 	$.ajax( {
 		type: "GET",
-		url: "/postagens",
-		dataType: 'html',
-		async: false,
+		url: "/postagens/busca",
+		data: { 
+			search: $("#search-shortcut").val(),
+			tags: "",
+			rank_by: "best",
+		},
+		dataType: "json",
 		success: function(data){
-			console.log("Success: ");
-			document.body.innerHTML = data;
-			$("#search-keyword").val(keyword);
+			console.log("Success: " + data);
+			window.shortcut = true;
+			console.log("changing shortcut to " + window.shortcut)
+			search_feed = data;
+			$(location).attr('href', '/postagens');
+			
 		},
 		error: function (e) {
 		}
