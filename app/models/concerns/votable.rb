@@ -18,7 +18,7 @@ module Votable
   end
 
   def update_score
-    self.votes.sum(:value)
+    self.update_columns(score: self.votes.sum(:value))
   end
 
 end

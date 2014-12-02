@@ -4,6 +4,7 @@ class Content < ActiveRecord::Base
   include ActionView::Helpers::SanitizeHelper
 
   MAX_CHARS_ON_PREVIEW = 200
+  HE = HTMLEntities.new
 
   attr_accessor :raw_tags
 
@@ -49,12 +50,11 @@ class Content < ActiveRecord::Base
     includes(:tags).where(tags: { id: Tag.search(*tags).ids })
   }
 
-  before_create :default_upvote
+  after_create :default_upvote
   before_save :process_tags
 
   def default_upvote
     self.upvote_by(self.user)
-    self.update_score
   end
 
   def process_tags
@@ -68,7 +68,7 @@ class Content < ActiveRecord::Base
   end
 
   def preview
-    self.strip_tags(self.body)[0,MAX_CHARS_ON_PREVIEW]
+    HE.decode(self.strip_tags self.body)[0,MAX_CHARS_ON_PREVIEW]
   end
 
 end
