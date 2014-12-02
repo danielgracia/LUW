@@ -60,3 +60,33 @@ function searchShortcut(){
 	});  
 	return false;
 }
+
+function invite(){
+	$('#result').removeClass();
+	$("#result").innerHTML = "";
+	var mail= $("#mail").val();
+	console.log("Email para convidar: " + mail);
+	$.ajax( {
+		type: "POST",
+		url: "/convidar",
+		data: mail,
+		async: false,
+		success: function(data){
+			console.log("Success: Convite");
+			var html = "<div id='result' role='alert' class='alert alert-success'>Convite enviado com sucesso! </div>";
+			$("#result").replaceWith(html);
+			
+		},
+		error: function (e) {
+			var html = "<div id='result' role='alert' class='alert alert-danger'>Falha no enviado do convite! Tente novamente.</div>";
+			$("#result").replaceWith(html);
+			
+		}
+	});  
+
+}
+
+function clearResult(){
+	var html = "<div id='result' role='alert'></div>";
+	$("#result").replaceWith(html);
+}
