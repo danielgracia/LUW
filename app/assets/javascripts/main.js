@@ -1,24 +1,16 @@
 
-<<<<<<< HEAD
-
-function changeOrder(sufix){
-=======
 function changeOrder(suffix){
->>>>>>> origin/master
+
 	
 	console.log("suffix gerada = " + suffix);
 	$.ajax({
 		type: "POST",
-<<<<<<< HEAD
-		url: "/postagens/busca/" + sufix,
-		data: dataE,
-=======
-		url: "/postagem/busca/" + suffix,
+		url: "/postagem/busca/",
 		data: { 
 			search: $("#search-keyword").val(),
-			tags: $("#tags").val() //TODO
+			tags: $("#tags").val(), //TODO
+			rank_by: suffix,
 		},
->>>>>>> origin/master
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(data){
