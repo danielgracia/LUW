@@ -98,3 +98,22 @@ function clearResult(){
 	var html = "<div id='result' role='alert'></div>";
 	$("#result").replaceWith(html);
 }
+
+function vote(action, id){
+	
+	console.log("ID DO TOPICO = " + id + " ACAO = " + action);
+	
+	$.ajax( {
+		type: "POST",
+		url: "/postagem/" + id + "/" + action,
+		success: function(data){
+			var score = $("#score").html();
+			if (action == 'downvote') score -= 1;
+			if(action == 'upvote') score += 1;
+			$("#score").html(score);
+		},
+		error: function (e) {
+		}
+	});  
+
+}
