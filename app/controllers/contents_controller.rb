@@ -117,8 +117,7 @@ class ContentsController < ApplicationController
       end
     else
       start = if params[:tags].present?
-        Content.where(id: Content.by_tags(*params[:tags].split(','))
-          .select("DISTINCT tags.id"))
+        Content.where(id: Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id"))
       else
         Content.all
       end
