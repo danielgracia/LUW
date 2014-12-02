@@ -102,7 +102,7 @@ class ContentsController < ApplicationController
       result = result.where(user: current_user).order(created_at: :desc)
     end
 
-    result.page.page(@current_page).per(@per_page)
+    result.page(@current_page).per(@per_page)
   end
 
 end

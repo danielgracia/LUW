@@ -1,20 +1,31 @@
 
+<<<<<<< HEAD
 
 function changeOrder(sufix){
+=======
+function changeOrder(suffix){
+>>>>>>> origin/master
 	
-	console.log("sufix gerada = " + sufix);
-	var keyword= $("#search-keyword").val(); 
-	var dataE = { "keyword": keyword };
-	$.ajax( {
+	console.log("suffix gerada = " + suffix);
+	$.ajax({
 		type: "POST",
+<<<<<<< HEAD
 		url: "/postagens/busca/" + sufix,
 		data: dataE,
+=======
+		url: "/postagem/busca/" + suffix,
+		data: { 
+			search: $("#search-keyword").val(),
+			tags: $("#tags").val() //TODO
+		},
+>>>>>>> origin/master
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
-		async: false,
 		success: function(data){
+			
 		},
 		error: function (e) {
+		
 		}
 	});  
 }
