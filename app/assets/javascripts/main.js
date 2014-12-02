@@ -1,4 +1,5 @@
 
+
 function changeOrder(sufix){
 	
 	console.log("sufix gerada = " + sufix);
@@ -6,7 +7,7 @@ function changeOrder(sufix){
 	var dataE = { "keyword": keyword };
 	$.ajax( {
 		type: "POST",
-		url: "/busca/" + sufix,
+		url: "/postagens/busca/" + sufix,
 		data: dataE,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
@@ -27,7 +28,14 @@ function setLocation(){
 			break;
 		case "/postagens":
 			$("#NavegarLink").addClass('active');
-			
+			$('#tags').tagsinput({
+				elemControlSize: true,
+				typeahead :
+				{
+					items: 4,
+					source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+				}
+			});
 			break;
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
