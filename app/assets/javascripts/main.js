@@ -129,11 +129,11 @@ function clearResult(){
 // Upvotes e downvotes
 $(document).ready(function(){
   $(".content-upvote,.content-downvote").parent().on("ajax:success", function(_, data){
-  	$("#content-score").text(data.value);
+  	$(".content-score").text(data.value);
   });
 
   $(".comment-upvote,.comment-downvote").each(function(){
-  	var $score = $(this).parent().siblings(".score");
+  	var $score = $(this).parent().siblings().find(".score");
   	$(this).parent().on("ajax:success", function(_, data){
 	    $score.text(data.value);
 	  });
