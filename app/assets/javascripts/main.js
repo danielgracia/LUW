@@ -1,6 +1,25 @@
-var shortcut;
-var keyword;
-var search_feed;
+
+// set focus when modal is opened
+$('#modal-confirm').on('shown.bs.modal', function (e) {
+    //get data-id attribute of the clicked element
+    var commentId = $(e.relatedTarget).data('id');
+    var topicId = $(e.relatedTarget).data('topic');
+
+    console.log("ID = " + commentId + " TOPIC =" + topicId);
+
+    //populate the textbox
+    $(e.currentTarget).find('form[id= formId]').val("postagem/" + topicId + "/comentario/" + commentID + "/deletar");
+    $('#formId').attr('action', "postagem/" + topicId + "/comentario/" + commentID + "/deletar");
+});
+
+// everytime the button is pushed, open the modal, and trigger the shown.bs.modal event
+$('#openConfirm').click(function (e) {
+	console.log("CLICK KCT");
+    $('#modal-confirm').modal({
+        show: true
+    });
+    return false;
+});
 
 function changeOrder(suffix){
 	console.log("suffix gerada = " + suffix);
@@ -41,7 +60,7 @@ function setLocation(sugestoes){
 			$("#HomeLink").addClass('active');
 			break;
 		case "/postagens":
-			console.log("SEARCH PAGE SHORTCUT? = " + window.shortcut);
+			
 			$("#NavegarLink").addClass('active');
 			
 			console.log(sugestoes);
@@ -56,15 +75,9 @@ function setLocation(sugestoes){
 			$('#tags').on('itemAdded', function(event) {
   				changeOrder('best');
 			});
-			if(window.shortcut){
-				$("#search-keyword").val(keyword);
-				console.log("search feed = " + search_feed);
-				window.shortcut = false;
-			}
 			break;
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
-			var sugestoes = getTagSuggestions();
 			$('#tags').tagsinput({
 					elemControlSize: true,
 					typeahead :
