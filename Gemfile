@@ -39,6 +39,12 @@ gem 'kaminari'
 # HTML cleaning support
 gem 'htmlentities'
 
+# Heroku support
+gem 'rails_12factor', group: :production
+
+# Unicorn
+gem 'unicorn', group: :production
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
