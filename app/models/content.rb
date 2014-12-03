@@ -25,7 +25,7 @@ class Content < ActiveRecord::Base
     when :best
       { ranked_by: "contents.score * :tsearch", order_within_rank: "contents.score DESC" }
     when :worst
-      { ranked_by: "contents.score * :tsearch", order_within_rank: "contents.score ASC" }
+      { ranked_by: "-contents.score * :tsearch", order_within_rank: "contents.score DESC" }
     when :newest
       { ranked_by: NEWEST_RANKING, order_within_rank: "contents.created_at DESC" }
     when :oldest
