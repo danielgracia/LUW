@@ -121,6 +121,7 @@ function redirectSearch(){
 function invite(){
 	$('#result').removeClass();
 	$("#result").innerHTML = "";
+	$("#spinner").show();
 	var mail= $("#email").val();
 	console.log("Email para convidar: " + mail);
 	$.ajax( {
@@ -131,14 +132,17 @@ function invite(){
 			console.log("Success: Convite");
 			var html = "<div id='result' role='alert' class='alert alert-success'>Convite enviado com sucesso! </div>";
 			$("#result").replaceWith(html);
+			$("#spinner").hide();
 			
 		},
 		error: function (e) {
 			var html = "<div id='result' role='alert' class='alert alert-danger'>Falha no enviado do convite! Tente novamente.</div>";
 			$("#result").replaceWith(html);
+			$("#spinner").hide();
 			
 		}
-	});  
+	});
+
 
 }
 
