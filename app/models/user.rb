@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
 
   protected
   def must_have_valid_invite
-    if Invite.find_by(token: self.invite_token).try(:used?)
+    invite = Invite.find_by(token: self.invite_token)
+    if invite.blank? || invite.used?
       errors.add(:base, "Você não tem um convite!")
     end
   end
