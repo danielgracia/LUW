@@ -108,13 +108,12 @@ function redirectSearch(){
 function invite(){
 	$('#result').removeClass();
 	$("#result").innerHTML = "";
-	var mail= $("#mail").val();
+	var mail= $("#email").val();
 	console.log("Email para convidar: " + mail);
 	$.ajax( {
 		type: "POST",
 		url: "/convidar",
-		data: mail,
-		async: false,
+		data: { email: mail },
 		success: function(data){
 			console.log("Success: Convite");
 			var html = "<div id='result' role='alert' class='alert alert-success'>Convite enviado com sucesso! </div>";
