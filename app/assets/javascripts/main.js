@@ -31,9 +31,11 @@ function changeOrder(suffix){
 	return false;
 }
 
-function setLocation(){
+
+function setLocation(sugestoes){
 	var pathname = window.location.pathname;
 	console.log("Local: " + pathname);
+
 	switch(pathname){
 		case "/":
 			$("#HomeLink").addClass('active');
@@ -41,12 +43,14 @@ function setLocation(){
 		case "/postagens":
 			console.log("SEARCH PAGE SHORTCUT? = " + window.shortcut);
 			$("#NavegarLink").addClass('active');
+			
+			console.log(sugestoes);
 			$('#tags').tagsinput({
 				elemControlSize: true,
 				typeahead :
 				{
 					items: 4,
-					source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+					source: sugestoes
 				}
 			});
 			$('#tags').on('itemAdded', function(event) {
@@ -60,20 +64,15 @@ function setLocation(){
 			break;
 		case "/postagem/nova":
 			$("#NovoLink").addClass('active');
-			$("#tags").tagsinput({
-            elemControlSize: true,
-            typeahead :
-            {
-              items: 4,
-              source: function(query, cb){
-                $.get('/sugestoes', {
-                  query: query
-                }, function(result){
-                  qb(result);
-                });
-              }
-            }
-                                  });
+			var sugestoes = getTagSuggestions();
+			$('#tags').tagsinput({
+					elemControlSize: true,
+					typeahead :
+					{
+						items: 4,
+						source: sugestoes
+					}
+			});
 			break;
 		case "/sobre":
 			$("#SobreLink").addClass('active');
@@ -83,6 +82,16 @@ function setLocation(){
 	}
 
 
+}
+
+function getTagSuggestions(){
+	$.ajax( {
+		type: "GET",
+		url: "/sugestoes",
+		success: setLocation,
+		error: function (e) {
+		}
+	});  
 }
 
 function getURLParameter(name) {
