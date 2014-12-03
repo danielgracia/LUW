@@ -135,6 +135,13 @@ class ContentsController < ApplicationController
     @per_page = 10
   end
 
+  RANKING = {
+    best: "score DESC",
+    worse: "score ASC",
+    newest: "created_at DESC",
+    oldest: "created_at ASC"
+  }
+
   def search_contents
     if params[:search].present? and params[:tags].present?
       by_tags = Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id")
@@ -143,8 +150,9 @@ class ContentsController < ApplicationController
       Content.search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
     elsif params[:tags].present?
       Content.where(id: Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id"))
+        .order(RANKING[(params[:rank_by] || :best).to_sym])
     else
-      Content.all
+      Content.all.order(RANKING[(params[:rank_by] || :best).to_sym])
     end.page(@current_page).per(@per_page)
   end
 
