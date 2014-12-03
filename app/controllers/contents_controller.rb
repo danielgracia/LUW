@@ -5,6 +5,7 @@ class ContentsController < ApplicationController
 
   def home
     @user = current_user
+    @contents = @user.contents.order(created_at: :desc).limit(3)
   end
 
   def browse
@@ -39,6 +40,7 @@ class ContentsController < ApplicationController
   def show
     @content = Content.find(params[:id])
     @comment = Comment.new
+    @title = @content.title
   end
 
   def upvote
