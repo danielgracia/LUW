@@ -5,6 +5,7 @@
 	<ul class="nav nav-tabs" role="tablist">
 	  <li role="presentation" class="active"><a href="#hot" role="tab" data-toggle="tab">Hot</a></li>
 	  <li role="presentation"><a href="#ultimos" role="tab" data-toggle="tab">Últimos</a></li>
+	  <li role="presentation"><a href="#meus" role="tab" data-toggle="tab">Meus</a></li>
 	</ul>
 	
 	<!-- Tab panes -->
@@ -19,6 +20,13 @@
 		<div role="tabpanel" class="tab-pane" id="ultimos">
 			<div class="list-group" id="ultimo-link">
 				<% Content.order(created_at: :desc).limit(10).each do |c| %>
+					<%= link_to c.title, show_content_path(c), class: "list-group-item" %>
+				<% end %>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="meus">
+			<div class="list-group" id="ultimo-link">
+				<% Content.where(user: current_user).order(created_at: :desc).limit(10).each do |c| %>
 					<%= link_to c.title, show_content_path(c), class: "list-group-item" %>
 				<% end %>
 			</div>
