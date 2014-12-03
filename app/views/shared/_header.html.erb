@@ -8,7 +8,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">Unifesp SHARED</a>
+    <a class="navbar-brand  navbar-center logo" href="/">Unifesp <strong>SHARED</strong></a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,19 +17,17 @@
       <div class="input-group">
         <input id="search-shortcut" type="text" class="form-control">
         <span class="input-group-btn">
-          <button class="btn btn-default" onclick="searchShortcut();">Procurar</button>
+          <button class="btn btn-default glyphicon glyphicon-search" onclick="return redirectSearch();"></button>
         </span>
       </div><!-- /input-group -->
     </form>
-    <ul class="nav navbar-nav navbar-right" style="padding-right:50px">
+    <ul class="nav navbar-nav navbar-right auto-overflow" style="padding-right:50px">
       <h3>Bem vindo, <%= current_user.name %></h3>
-      <div class="input-group auto-overflow full-width">
-        <form action="/logout" method="POST">
-          <button type="submit" class="btn btn-default pull-right margin5">Logout</button>
-        </form>
-        <button class="btn btn-default pull-right margin5" href="#invite" data-toggle="modal" data-target=".bs-modal-sm">Convidar</button>
-        
+      <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-modal-sm">Convidar</button>
+        <button type="button" class="btn btn-default" onclick="logout();">Logout</button>
       </div>
+      
     </ul>
     <br>
     <br>
@@ -43,6 +41,8 @@
   </div><!-- /.navbar-collapse -->
 
 </nav>
+
+
 
 <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">

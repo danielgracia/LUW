@@ -23,23 +23,6 @@
                               <label class="control-label" for="content[raw_tags]" title="Evite criar tags duplicadas, utilize de preferência as listadas no auto-complemento">Tags:</label><span class="glyphicon glyphicon-question-sign pull-right margin5" title="Evite criar tags duplicadas, utilize de preferência as listadas no auto-complemento" style="margin-top: 5px"></span>
                               <div class="controls">
                                 <input id="tags" name="content[raw_tags]" class="form-control input-medium typeahead" data-provide="typeahead">
-                                <script>
-                                  $("#tags").tagsinput({
-                                    elemControlSize: true,
-                                    typeahead :
-                                    {
-                                      items: 4,
-                                      source: function(query, cb){
-                                        $.get('/sugestoes', {
-                                          query: query
-                                        }, function(result){
-                                          qb(result);
-                                        });
-                                      }
-                                    }
-                                  });
-                                </script>
-
                               </div>
                             </div>
                                 <p> 
@@ -49,10 +32,12 @@
 								<%= tinymce %>
                                 </div>
                                 </p>
+                                <div class="invisible">
                                 <p>
                                 <label for="content[file]" fclass="uname"> Arquivo:</label>
                                 <input id="content[file]" name="content[file]"  type="file" placeholder="Faça Upload..." />
                                 </p>
+                                </div>
                                 <div class="control-group">
                                   <label class="control-label" for="create"></label>
                                   <div class="controls">
