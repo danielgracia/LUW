@@ -12,9 +12,9 @@
 			  <div id="tags">
 				<p>Tags:
 				<% @content.tags.each do |t|  %>
-				<span class="label label-info"> <%= t.body %></span>
+				  <span class="label label-info"> <%= t.body %></span>
 				<% end %>
-				<span class="label label-success pull-right"> Rating: <span class="badge" id="score"><%= @content.score %></span> </span>
+				<span class="label label-success pull-right"> Rating: <span class="badge" id="content-score"><%= @content.score %></span> </span>
 				</p>
 				
 			  </div>
@@ -23,20 +23,24 @@
 					<div class="panel-heading">
 					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left" alt="Perfil Photo" width="100px" height="100px">
 					  <h3 class="panel-title">Por <%= @content.user.name %></h3>
-					  <button type="button" class="btn btn-sm btn-danger pull-right" onclick="vote('downvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
-					  <button type="button" class="btn btn-sm btn-success pull-right" onclick="vote('upvote', <%= @content.id %>);"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button> 
+            <%= button_to(content_downvote_path(@content), class: "content-downvote btn btn-sm btn-danger pull-right", remote: true) do %>
+              <span class="glyphicon glyphicon-thumbs-down"> Downvote </span>
+            <% end %>
+            <%= button_to(content_upvote_path(@content), class: "content-upvote btn btn-sm btn-success pull-right", remote: true) do %>
+              <span class="glyphicon glyphicon-thumbs-up"> Upvote </span>
+            <% end %>
 					</div>
 					<div class="panel-body">
 					<%= raw @content.body %>
 					</div>
 					<div class="panel-footer auto-overflow">
 						<% if @current_user.name == @content.user.name %>
-								<button type="button" class="btn btn-sm btn-primary"><spam class="glyphicon glyphicon-pencil"> Editar </spam></button>
-								<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+								<button type="button" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"> Editar </span></button>
+								<button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"> Deletar </span></button>
 						<% end %>
-						<spam class="date-label float-right"> 
+						<span class="date-label float-right"> 
 							Em: <%= @content.created_at.strftime("%d/%m/%Y, %R") %>
-						</spam>
+						</span>
 					</div>
 			  </div>
 			  
@@ -46,17 +50,21 @@
 						<div class="panel-heading comment-heading">
 						  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left comment-img" alt="Perfil Photo" width="70px" height="70px">
 						  <h3 class="panel-title">Por <%= t.user.name %></h3>
-						  <span class="label label-deffault pull-right"><span class="badge"><%= @comment.score %></span> </span>
-						  <button type="button" class="btn btn-sm btn-danger pull-right"><spam class="glyphicon glyphicon-thumbs-down"> DownVote </spam></button>
-						  <button type="button" class="btn btn-sm btn-success pull-right"><spam class="glyphicon glyphicon-thumbs-up"> UpVote </spam></button></button>
+						  <span class="label label-deffault pull-right"><span class="badge score"><%= @comment.score %></span> </span>
+              <%= button_to(comment_downvote_path(t), class: "comment-downvote btn btn-sm btn-danger pull-right", remote: true) do %>
+                <span class="glyphicon glyphicon-thumbs-down"> Downvote </span>
+              <% end %>
+              <%= button_to(comment_upvote_path(t), class: "comment-upvote btn btn-sm btn-success pull-right", remote: true) do %>
+                <span class="glyphicon glyphicon-thumbs-up"> Upvote </span>
+              <% end %>
 						</div>
 						<div class="panel-body">
 						<%= raw t.body %>
 						</div>
 						<div class="panel-footer auto-overflow">
-							<spam class="float-right date-label"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </spam>
+							<span class="float-right date-label"> Em: <%= t.created_at.strftime("%d/%m/%Y, %R") %> </span>
 							<% if @current_user.name == t.user.name %>
-								<button type="button" class="btn btn-sm btn-danger"><spam class="glyphicon glyphicon-remove"> Deletar </spam></button>
+								<button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"> Deletar </span></button>
 							<% end %>
 						</div>
 				  </div>

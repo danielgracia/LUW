@@ -42,18 +42,41 @@ class ContentsController < ApplicationController
   end
 
   def upvote
-    Content.find(params[:id]).upvote!
-    head :ok
+    render json: {
+      value: Content.find(params[:id]).upvote_by(current_user)
+    }
   end
 
   def downvote
-    Content.find(params[:id]).downvote!
-    head :ok
+    render json: {
+      value: Content.find(params[:id]).downvote_by(current_user)
+    }
   end
 
+  # UNUSED
   def novote
-    Content.find(params[:id]).novote!
-    head :ok
+    render json: {
+      value: Content.find(params[:id]).novote_by(current_user)
+    }
+  end
+
+  def upvote_comment
+    render json: {
+      value: Comment.find(params[:id]).upvote_by(current_user)
+    }
+  end
+
+  def downvote_comment
+    render json: {
+      value: Comment.find(params[:id]).downvote_by(current_user)
+    }
+  end
+
+  # UNUSED
+  def novote_comment
+    render json: {
+      value: Comment.find(params[:id]).novote_by(current_user)
+    }
   end
 
   def edit

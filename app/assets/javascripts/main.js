@@ -99,21 +99,16 @@ function clearResult(){
 	$("#result").replaceWith(html);
 }
 
-function vote(action, id){
-	
-	console.log("ID DO TOPICO = " + id + " ACAO = " + action);
-	
-	$.ajax( {
-		type: "POST",
-		url: "/postagem/" + id + "/" + action,
-		success: function(data){
-			var score = $("#score").html();
-			if (action == 'downvote') score -= 1;
-			if(action == 'upvote') score += 1;
-			$("#score").html(score);
-		},
-		error: function (e) {
-		}
-	});  
+// Upvotes e downvotes
+$(document).ready(function(){
+  $(".content-upvote,.content-downvote").parent().on("ajax:success", function(_, data){
+  	$("#content-score").text(data.value);
+  });
 
-}
+  $(".comment-upvote,.comment-downvote").each(function(){
+  	var $score = $(this).parent().find(".score");
+  	$(this).parent().on("ajax:success", function(_, data){
+	    $score.text(data.value);
+	  });
+  });
+});

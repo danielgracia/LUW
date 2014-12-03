@@ -6,17 +6,17 @@ class Vote < ActiveRecord::Base
 
   def upvote!
     self.value = 1
-    save
+    save!
   end
 
   def downvote!
     self.value = -1
-    save
+    save!
   end
 
   def novote!
     self.value = 0
-    save
+    save!
   end
 
   def update_votable

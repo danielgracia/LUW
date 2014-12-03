@@ -19,13 +19,19 @@ Rails.application.routes.draw do
   post '/postagem/criar', to: 'contents#create'
   post '/postagem/:id/salvar', to: 'contents#update'
 
-  ['upvote', 'downvote', 'novote'].each do |action|
-    post "/postagem/:id/#{action}", to: "contents\##{action}"
-  end
-
   # Comment inside content screens
   post '/postagem/:content_id/comentario/criar', to: 'contents#comment'
   post '/postagem/:content_id/comentario/:comment_id/deletar', to: 'contents#delete_comment'
+
+  ['upvote', 'downvote', 'novote'].each do |action|
+    post "/postagem/:id/#{action}",
+      to: "contents\##{action}",
+      as: "content_#{action}"
+
+    post "/comentario/:id/#{action}", 
+      to: "contents\##{action}_comment",
+      as: "comment_#{action}"
+  end
 
   # Tags
   get '/sugestoes', to: 'tags#suggest'
