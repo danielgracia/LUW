@@ -133,21 +133,16 @@ class ContentsController < ApplicationController
     @per_page = 10
   end
 
-  def search_contents    
-    if params[:search].present?
-      if params[:tags].present?
-        by_tags = Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id")
-        Content.where(id: by_tags)
-          .search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
-      else
-        Content.search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
-      end
+  def search_contents
+    if params[:search].present? and params[:tags].present?
+      by_tags = Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id")
+      Content.where(id: by_tags).search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
+    elsif params[:search].present?
+      Content.search(params[:search], rank_by: (params[:rank_by] || :best).to_sym)
+    elsif params[:tags].present?
+      Content.where(id: Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id"))
     else
-      if params[:tags].present?
-        Content.where(id: Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id"))
-      else
-        Content.all
-      end.where(user: current_user).order(created_at: :desc)
+      Content.all
     end.page(@current_page).per(@per_page)
   end
 
