@@ -106,7 +106,7 @@ class ContentsController < ApplicationController
   def delete_comment
     @content = Content.find(params[:content_id])
     @comment = Comment.find(params[:comment_id])
-    if current_user != @comment.user
+    if current_user.id != @comment.user.try(:id)
       render :show, status: :unauthorized
     else
       @comment.destroy
