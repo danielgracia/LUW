@@ -51,7 +51,7 @@
 					<div class="panel-heading comment-heading">
 					  <img src="<%= image_path "user_icon.jpg" %>" class="img-thumbnail pull-left comment-img" alt="Perfil Photo" width="70px" height="70px">
 					  <h3 class="panel-title">Por <%= t.user.name %></h3>
-					  <span class="label label-deffault pull-right"><span class="badge score"><%= @comment.score %></span> </span>
+					  <span class="label label-deffault pull-right"><span class="badge score"><%= t.score %></span> </span>
             <%= button_to(comment_downvote_path(t), class: "comment-downvote btn btn-sm btn-danger pull-right", remote: true) do %>
               <span class="glyphicon glyphicon-thumbs-down"> Downvote </span>
             <% end %>
