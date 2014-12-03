@@ -134,6 +134,8 @@ class ContentsController < ApplicationController
   end
 
   def search_contents
+    p params[:tags]
+    
     if params[:search].present?
       if params[:tags].present?
         by_tags = Content.by_tags(*params[:tags].split(',')).pluck("DISTINCT contents.id")
